@@ -1,59 +1,23 @@
 let img;
 
 function preload() {
-  img = loadImage("images/matt.3.jpg");
+  img = loadImage("image/matt.3.jpg");
 }
-
 function setup() {
-  createCanvas(800,800);
-  noSmooth();
+  createCanvas(800, 800);
+
   img.resize(width, height);
+
+  noStroke();
 }
 
 function draw() {
   img.loadPixels();
-  for (let i = 0; i < 100; i++) {
-    swapPixels();
-  }
-  img.updatePixels();
+  const pixelX = random(width);
+  const pixelY = random(height);
+  const pixelColor = img.get(pixelX, pixelY);
 
-  image(img, 0, 0, width, height);
-}
-
-function averagePixels() {
-  const xOne = random(img.width);
-  const yOne = random(img.height);
-  const colorOne = img.get(xOne, yOne);
-
-  // Uncomment to choose points closer together
-  // const xTwo = constrain(xOne + random(-20, 20), 0, img.width-1);
-  // const yTwo = constrain(yOne + random(-20, 20), 0, img.height-1);
-  const xTwo = random(img.width);
-  const yTwo = random(img.height);
-  const colorTwo = img.get(xTwo, yTwo);
-
-  const averageColor = color(
-    (red(colorOne) + red(colorTwo)) / 2,
-    (green(colorOne) + green(colorTwo)) / 2,
-    (blue(colorOne) + blue(colorTwo)) / 2
-  );
-
-  img.set(xOne, yOne, averageColor);
-  img.set(xTwo, yTwo, averageColor);
-}
-
-function swapPixels() {
-  const xOne = random(img.width);
-  const yOne = random(img.height);
-  const colorOne = img.get(xOne, yOne);
-
-  // Uncomment to choose points closer together
-  // const xTwo = constrain(xOne + random(-20, 20), 0, img.width-1);
-  // const yTwo = constrain(yOne + random(-20, 20), 0, img.height-1);
-  const xTwo = random(img.width);
-  const yTwo = random(img.height);
-  const colorTwo = img.get(xTwo, yTwo);
-
-  img.set(xOne, yOne, colorTwo);
-  img.set(xTwo, yTwo, colorOne);
+  // circles
+  fill(pixelColor);
+  ellipse(pixelX, pixelY, 20, 20);
 }
