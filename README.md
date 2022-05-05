@@ -1,2 +1,2 @@
 # awesomesauceweb
-THIS IS A WEBSITE OF A PROJECT OF MULTIPLE WORKS
+This I am a website that showcases some projects I am working on
